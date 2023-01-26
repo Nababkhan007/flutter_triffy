@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "783627667505",
+    "project_id": "triffy-1cc5e",
+    "storage_bucket": "triffy-1cc5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783627667505:android:0f2b4dc822a67a13c1ed10",
+        "android_client_info": {
+          "package_name": "com.khan.triffy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783627667505-kbqbesp4bni4d0mqp7tkm6o6culnu8ns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW6rJ_sY7wNxowm3cWtpYGsxXGTNoAFac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783627667505-kbqbesp4bni4d0mqp7tkm6o6culnu8ns.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
