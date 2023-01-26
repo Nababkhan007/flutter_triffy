@@ -11,10 +11,11 @@ class Triffy extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Triffy",
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.indigo,
       ),
       home: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text(
             "Triffy",
           ),
