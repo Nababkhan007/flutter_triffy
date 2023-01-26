@@ -32,9 +32,11 @@ class LoginViewModel extends GetxController {
   }
 
   Future _loginWithFirebase() async {
+    isLoading.value = true;
     try {
       UserCredential credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      isLoading.value = false;
 
       showSnackBar(
         "Success",
@@ -44,6 +46,7 @@ class LoginViewModel extends GetxController {
       _saveSharedPrefValue(credential.user!.uid);
       _goToHomePage();
     } on FirebaseAuthException catch (e) {
+      isLoading.value = false;
       if (e.code == "invalid-email") {
         showSnackBar(
           "Warning",
@@ -51,18 +54,21 @@ class LoginViewModel extends GetxController {
           leftBarIndicatorColor: colorWarning,
         );
       } else if (e.code == "user-not-found") {
+        isLoading.value = false;
         showSnackBar(
           "Warning",
           "No user found for that email.",
           leftBarIndicatorColor: colorWarning,
         );
       } else if (e.code == "wrong-password") {
+        isLoading.value = false;
         showSnackBar(
           "Warning",
           "Wrong password provided for that user.",
           leftBarIndicatorColor: colorWarning,
         );
       } else {
+        isLoading.value = false;
         showSnackBar(
           "Warning",
           "Sorry, something went wrong!",
@@ -70,7 +76,12 @@ class LoginViewModel extends GetxController {
         );
       }
     } catch (e) {
-      // ignore :)
+      isLoading.value = false;
+      showSnackBar(
+        "Warning",
+        "Sorry, something went wrong!",
+        leftBarIndicatorColor: colorWarning,
+      );
     }
   }
 

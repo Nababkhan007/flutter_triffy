@@ -31,9 +31,11 @@ class RegistrationViewModel extends GetxController {
   }
 
   Future _registrationWithFirebase() async {
+    isLoading.value = true;
     try {
       UserCredential credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      isLoading.value = false;
 
       showSnackBar(
         "Success",
@@ -42,6 +44,7 @@ class RegistrationViewModel extends GetxController {
       );
       goToLoginPage();
     } on FirebaseAuthException catch (e) {
+      isLoading.value = false;
       if (e.code == "invalid-email") {
         showSnackBar(
           "Warning",
@@ -49,18 +52,21 @@ class RegistrationViewModel extends GetxController {
           leftBarIndicatorColor: colorWarning,
         );
       } else if (e.code == "weak-password") {
+        isLoading.value = false;
         showSnackBar(
           "Warning",
           "The password provided is too weak.",
           leftBarIndicatorColor: colorWarning,
         );
       } else if (e.code == "email-already-in-use") {
+        isLoading.value = false;
         showSnackBar(
           "Warning",
           "The account already exists for that email.",
           leftBarIndicatorColor: colorWarning,
         );
       } else {
+        isLoading.value = false;
         showSnackBar(
           "Warning",
           "Sorry, something went wrong!",
@@ -68,7 +74,12 @@ class RegistrationViewModel extends GetxController {
         );
       }
     } catch (e) {
-      // ignore :)
+      isLoading.value = false;
+      showSnackBar(
+        "Warning",
+        "Sorry, something went wrong!",
+        leftBarIndicatorColor: colorWarning,
+      );
     }
   }
 
