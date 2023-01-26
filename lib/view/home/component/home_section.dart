@@ -9,6 +9,7 @@ class HomeSection extends GetWidget<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
     return CustomAppBar(
+      automaticallyImplyLeading: false,
       title: "Triffy",
       body: Container(),
     );
