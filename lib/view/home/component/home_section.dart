@@ -1,29 +1,109 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:triffy/common/const/color_const.dart';
 import 'package:triffy/common/const/dimen_const.dart';
 import 'package:triffy/view_model/home_view_model.dart';
-import 'package:triffy/common/widget/custom_app_bar.dart';
+import 'package:triffy/common/widget/custom_scaffold.dart';
+import 'package:triffy/common/widget/custom_search_bar.dart';
+import 'package:triffy/view/home/component/home_trip_list_section.dart';
 
 class HomeSection extends GetWidget<HomeViewModel> {
   const HomeSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CustomAppBar(
-      automaticallyImplyLeading: false,
-      title: "Triffy",
-      actions: [
-        IconButton(
-          padding: const EdgeInsets.all(
-            paddingMedium,
+    return CustomScaffold(
+      body: ListView(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(
+                  paddingLarge,
+                ),
+                child: Text(
+                  "Triffy",
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+              const Spacer(),
+              IconButton(
+                padding: const EdgeInsets.symmetric(
+                  vertical: paddingMedium,
+                  horizontal: paddingLarge,
+                ),
+                onPressed: () => controller.logout(),
+                icon: const Icon(
+                  Icons.power_settings_new,
+                ),
+              ),
+            ],
           ),
-          onPressed: () => controller.logout(),
-          icon: const Icon(
-            Icons.power_settings_new,
+          const CustomSearchBar(),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: paddingMedium,
+                  horizontal: paddingLarge,
+                ),
+                child: Text(
+                  "Places",
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: paddingMedium,
+                  horizontal: paddingLarge,
+                ),
+                child: Text(
+                  "See all",
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: colorAccent,
+                      ),
+                ),
+              ),
+            ],
           ),
-        )
-      ],
-      body: Container(),
+          const HomeTripListSection(),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: paddingMedium,
+                  horizontal: paddingLarge,
+                ),
+                child: Text(
+                  "Hotels",
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: paddingMedium,
+                  horizontal: paddingLarge,
+                ),
+                child: Text(
+                  "See all",
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: colorAccent,
+                      ),
+                ),
+              ),
+            ],
+          ),
+          const HomeTripListSection(),
+        ],
+      ),
     );
   }
 }
