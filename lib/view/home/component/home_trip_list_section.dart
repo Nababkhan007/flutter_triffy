@@ -1,9 +1,18 @@
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:triffy/common/const/dimen_const.dart';
+import 'package:triffy/view_model/home_view_model.dart';
+import 'package:triffy/model/network/place_hotel_model.dart';
+import 'package:triffy/common/widget/custom_progress_bar.dart';
 import 'package:triffy/view/home/component/home_trip_card.dart';
 
-class HomeTripListSection extends StatelessWidget {
-  const HomeTripListSection({Key? key}) : super(key: key);
+class HomeTripListSection extends GetWidget<HomeViewModel> {
+  final bool isPlace;
+
+  const HomeTripListSection({
+    Key? key,
+    required this.isPlace,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +23,26 @@ class HomeTripListSection extends StatelessWidget {
       ),
       height: size.height * 0.3,
       width: size.width * 1,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        primary: false,
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) {
-          return const Padding(
-            padding: EdgeInsets.only(
-              left: paddingLarge,
-            ),
-            child: HomeTripCard(),
-          );
-        },
+      child: controller.obx(
+        (state) => ListView.builder(
+          scrollDirection: Axis.horizontal,
+          primary: false,
+          itemCount: controller.trip.value.places.length,
+          itemBuilder: (BuildContext context, int index) {
+            PlaceHotelModel placeHotel = isPlace
+                ? controller.trip.value.places[index]
+                : controller.trip.value.hotels[index];
+            return Padding(
+              padding: const EdgeInsets.only(
+                left: paddingLarge,
+              ),
+              child: HomeTripCard(
+                placeHotel: placeHotel,
+              ),
+            );
+          },
+        ),
+        onLoading: const CustomProgressBar(),
       ),
     );
   }

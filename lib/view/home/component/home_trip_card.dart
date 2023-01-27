@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:triffy/common/const/color_const.dart';
 import 'package:triffy/common/const/dimen_const.dart';
+import 'package:triffy/model/network/place_hotel_model.dart';
 import 'package:triffy/view/trip_detail/trip_detail_view.dart';
 
 class HomeTripCard extends StatelessWidget {
-  const HomeTripCard({Key? key}) : super(key: key);
+  final PlaceHotelModel placeHotel;
+
+  const HomeTripCard({
+    Key? key,
+    required this.placeHotel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,9 @@ class HomeTripCard extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return const TripDetailView();
+                return TripDetailView(
+                  placeHotel: placeHotel,
+                );
               },
             ),
           );
@@ -37,10 +45,7 @@ class HomeTripCard extends StatelessWidget {
                         radiusMedium,
                       ),
                       child: Image.network(
-                        "https://images.unsplash.com/photo-1623941000186"
-                        "-afafbcfb65e7?ixlib=rb-4.0.3&ixid=MnwxMjA3f"
-                        "DB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format"
-                        "&fit=crop&w=1472&q=80",
+                        placeHotel.imageUrl[0],
                         height: size.height * 0.15,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -89,7 +94,7 @@ class HomeTripCard extends StatelessWidget {
                   ),
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Sea beach",
+                    placeHotel.name,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorWhite,
@@ -107,7 +112,7 @@ class HomeTripCard extends StatelessWidget {
                   ),
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Cox's Bazar, Bangladesh",
+                    placeHotel.country,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: colorAsh,
                         ),
@@ -130,7 +135,7 @@ class HomeTripCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "15/02/2023",
+                      placeHotel.time,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.bold,
                             color: colorAsh,
@@ -144,7 +149,7 @@ class HomeTripCard extends StatelessWidget {
                         right: paddingMedium,
                       ),
                       child: Text(
-                        "1000 BDT",
+                        placeHotel.price,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               fontWeight: FontWeight.bold,
                               color: colorAsh,

@@ -73,7 +73,9 @@ class HomeSection extends GetWidget<HomeViewModel> {
               ),
             ],
           ),
-          const HomeTripListSection(),
+          const HomeTripListSection(
+            isPlace: true,
+          ),
           Row(
             children: [
               Padding(
@@ -103,7 +105,9 @@ class HomeSection extends GetWidget<HomeViewModel> {
               ),
             ],
           ),
-          const HomeTripListSection(),
+          const HomeTripListSection(
+            isPlace: false,
+          ),
         ],
       ),
     );

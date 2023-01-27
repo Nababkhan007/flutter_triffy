@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:triffy/common/const/color_const.dart';
+import 'package:triffy/model/network/place_hotel_model.dart';
 
 class TripDetailDescriptionSection extends StatefulWidget {
+  final double padding;
+  final PlaceHotelModel placeHotel;
+
   const TripDetailDescriptionSection({
     Key? key,
     required this.padding,
+    required this.placeHotel,
   }) : super(key: key);
-
-  final double padding;
 
   @override
   State<TripDetailDescriptionSection> createState() =>
@@ -49,7 +52,7 @@ class _TripDetailDescriptionSectionState
               right: widget.padding,
             ),
             child: Text(
-              "Sea beach",
+              widget.placeHotel.name,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.bold,
                     color: colorWhite,
@@ -67,7 +70,7 @@ class _TripDetailDescriptionSectionState
               right: widget.padding,
             ),
             child: Text(
-              "Cox's Bazar, Bangladesh",
+              widget.placeHotel.country,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: colorAsh,
                   ),
@@ -90,7 +93,7 @@ class _TripDetailDescriptionSectionState
                   color: colorWhite,
                 ),
                 Text(
-                  "15/02/2023",
+                  widget.placeHotel.time,
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: colorAsh,
@@ -109,11 +112,7 @@ class _TripDetailDescriptionSectionState
               horizontal: widget.padding,
             ),
             child: Text(
-              "Search and compare rates on Trip.com and find the best hotel "
-              "for your holidays. Low cost flights and hotels. Easy & "
-              "secure online booking. Instant confirmation. 7/24 Customer "
-              "Service. Worldwide Coverage. Easy & Fast Booking. "
-              "Competitive Pricing. Trusted Travel Expert.",
+              widget.placeHotel.description,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: colorAsh,
                   ),
