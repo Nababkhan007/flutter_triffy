@@ -41,7 +41,9 @@ class HomeSection extends GetWidget<HomeViewModel> {
               ),
             ],
           ),
-          const CustomSearchBar(),
+          const CustomSearchBar(
+            hint: "Search destination, location",
+          ),
           Row(
             children: [
               Padding(
