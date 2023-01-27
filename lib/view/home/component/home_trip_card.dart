@@ -144,7 +144,7 @@ class HomeTripCard extends StatelessWidget {
                         right: paddingMedium,
                       ),
                       child: Text(
-                        "1000 BDT/-",
+                        "1000 BDT",
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               fontWeight: FontWeight.bold,
                               color: colorAsh,
