@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:triffy/common/const/color_const.dart';
 import 'package:triffy/common/const/dimen_const.dart';
 import 'package:triffy/common/helper/round_border_helper.dart';
@@ -23,7 +24,8 @@ class ThemeHelper {
           focusedBorder: RoundBorderHelper.outlineInputBorder(),
         ),
         cardTheme: CardTheme(
-          shadowColor: Colors.transparent,
+          color: colorLightPrimary,
+          shadowColor: colorPrimary,
           shape: RoundBorderHelper.roundedRectangleBorder(
             radius: radiusMedium,
           ),
@@ -51,4 +53,11 @@ class ThemeHelper {
               secondary: colorAccent,
             ),
       );
+
+  static void setStatusBarStyle(
+          {Color statusBarColor = colorPrimary,
+          Brightness statusBarBrightness = Brightness.light}) =>
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor: colorPrimary,
+          statusBarIconBrightness: statusBarBrightness));
 }
