@@ -3,6 +3,7 @@ import 'package:triffy/route/app_route.dart';
 import 'package:triffy/view/home/home_view.dart';
 import 'package:triffy/view/welcome/welcome_view.dart';
 import 'package:triffy/view/auth/login/login_view.dart';
+import 'package:triffy/view/booked_trip/booked_trip_view.dart';
 import 'package:triffy/view/trip_detail/trip_detail_view.dart';
 import 'package:triffy/view/auth/registration/registration_view.dart';
 
@@ -29,6 +30,10 @@ abstract class AppPage {
     GetPage(
       name: AppRoute.tripDetail,
       page: () => const TripDetailView(),
+    ),
+    GetPage(
+      name: AppRoute.bookedTrip,
+      page: () => const BookedTripView(),
     ),
   ];
 }
