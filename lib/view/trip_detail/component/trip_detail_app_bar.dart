@@ -12,7 +12,7 @@ class TripDetailAppBar extends StatelessWidget {
 
   final Size size;
   final double padding;
-  final double price;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class TripDetailAppBar extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(padding * .4),
             child: Text(
-              "1000 BDT",
+              price,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: colorWhite,
                   ),
