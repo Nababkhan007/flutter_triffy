@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:triffy/common/const/color_const.dart';
 import 'package:triffy/common/const/dimen_const.dart';
+import 'package:triffy/view_model/home_view_model.dart';
 import 'package:triffy/model/network/place_hotel_model.dart';
-import 'package:triffy/view/trip_detail/trip_detail_view.dart';
 
 class HomeTripCard extends StatelessWidget {
+  final HomeViewModel homeViewModel;
   final PlaceHotelModel placeHotel;
 
   const HomeTripCard({
     Key? key,
+    required this.homeViewModel,
     required this.placeHotel,
   }) : super(key: key);
 
@@ -20,17 +22,7 @@ class HomeTripCard extends StatelessWidget {
         right: paddingLarge,
       ),
       child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return TripDetailView(
-                  placeHotel: placeHotel,
-                );
-              },
-            ),
-          );
-        },
+        onTap: () => homeViewModel.goToTripDetailView(placeHotel),
         child: Card(
           elevation: 2.0,
           child: SizedBox(

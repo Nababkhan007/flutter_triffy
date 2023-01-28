@@ -37,6 +37,7 @@ class HomeTripListSection extends GetWidget<HomeViewModel> {
                 left: paddingLarge,
               ),
               child: HomeTripCard(
+                homeViewModel: controller,
                 placeHotel: placeHotel,
               ),
             );

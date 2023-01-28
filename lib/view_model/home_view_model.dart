@@ -6,6 +6,7 @@ import 'package:triffy/common/const/util_const.dart';
 import 'package:triffy/common/const/color_const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:triffy/model/network/trip_model.dart';
+import 'package:triffy/model/network/place_hotel_model.dart';
 import 'package:triffy/common/helper/get_storage_helper.dart';
 
 class HomeViewModel extends GetxController with StateMixin<TripModel> {
@@ -18,6 +19,9 @@ class HomeViewModel extends GetxController with StateMixin<TripModel> {
     _getTrips();
     super.onInit();
   }
+
+  Future<dynamic>? goToTripDetailView(PlaceHotelModel placeHotel) =>
+      Get.toNamed(AppRoute.tripDetail, arguments: {"placeHotel": placeHotel});
 
   void _getTrips() async {
     change(trip.value, status: RxStatus.loading());
