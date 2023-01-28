@@ -110,6 +110,20 @@ class HomeSection extends GetWidget<HomeViewModel> {
           ),
         ],
       ),
+      fab: Padding(
+        padding: const EdgeInsets.only(
+          right: paddingSmall,
+          bottom: paddingLarge,
+        ),
+        child: FloatingActionButton.extended(
+          backgroundColor: colorAccent,
+          isExtended: true,
+          onPressed: () => controller.goToBookedTripView(),
+          label: const Text(
+            "Booked Trips",
+          ),
+        ),
+      ),
     );
   }
 }

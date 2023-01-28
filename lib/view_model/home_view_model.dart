@@ -20,6 +20,8 @@ class HomeViewModel extends GetxController with StateMixin<TripModel> {
     super.onInit();
   }
 
+  Future<dynamic>? goToBookedTripView() => Get.toNamed(AppRoute.bookedTrip);
+
   Future<dynamic>? goToTripDetailView(PlaceHotelModel placeHotel) =>
       Get.toNamed(AppRoute.tripDetail, arguments: {"placeHotel": placeHotel});
 
