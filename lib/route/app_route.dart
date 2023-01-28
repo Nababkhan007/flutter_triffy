@@ -3,6 +3,6 @@ abstract class AppRoute {
       login = '/login',
       registration = '/registration',
       home = '/home',
-      tripDetails = '/tripDetails',
+      tripDetail = '/tripDetail',
       bookedTrip = '/bookedTrip';
 }
