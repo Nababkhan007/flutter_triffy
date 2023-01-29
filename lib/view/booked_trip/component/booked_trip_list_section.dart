@@ -19,13 +19,13 @@ class BookedTripListSection extends GetWidget<HomeViewModel> {
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(
-        vertical: paddingMedium,
+        horizontal: paddingMedium,
       ),
-      height: size.height * 0.3,
+      height: size.height * 1,
       width: size.width * 1,
       child: controller.obx(
         (state) => ListView.builder(
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           primary: false,
           itemCount: isPlace
               ? controller.trip.value.places.length
@@ -35,8 +35,8 @@ class BookedTripListSection extends GetWidget<HomeViewModel> {
                 ? controller.trip.value.places[index]
                 : controller.trip.value.hotels[index];
             return Padding(
-              padding: const EdgeInsets.only(
-                left: paddingLarge,
+              padding: const EdgeInsets.symmetric(
+                horizontal: paddingMedium,
               ),
               child: BookedTripCard(
                 homeViewModel: controller,
