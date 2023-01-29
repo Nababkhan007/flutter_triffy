@@ -18,9 +18,7 @@ class BookedTripSection extends GetWidget<HomeViewModel> {
           CustomSearchBar(
             hint: "Search destination, location",
           ),
-          BookedTripListSection(
-            isPlace: true,
-          ),
+          BookedTripListSection(),
         ],
       ),
     );

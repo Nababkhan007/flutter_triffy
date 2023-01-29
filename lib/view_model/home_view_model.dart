@@ -6,29 +6,24 @@ import 'package:triffy/common/const/util_const.dart';
 import 'package:triffy/common/const/color_const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:triffy/model/network/trip_model.dart';
-import 'package:triffy/model/network/place_hotel_model.dart';
+import 'package:triffy/model/network/place_model.dart';
 import 'package:triffy/common/helper/get_storage_helper.dart';
 
 class HomeViewModel extends GetxController with StateMixin<TripModel> {
-  String _uid = "";
   Rx<TripModel> trip = TripModel().obs;
 
   @override
   void onInit() {
-    _getSharedPrefValue();
     _getTrips();
     super.onInit();
   }
 
   Future<dynamic>? goToBookedTripView() => Get.toNamed(AppRoute.bookedTrip);
 
-  Future<dynamic>? goToTripDetailView(bool isPlace,
-          List<PlaceHotelModel> placeHotels, PlaceHotelModel placeHotel) =>
-      Get.toNamed(AppRoute.tripDetail, arguments: {
-        "isPlace": isPlace,
-        "placeHotels": placeHotels,
-        "placeHotel": placeHotel,
-      });
+  Future<dynamic>? goToTripDetailView(
+          List<PlaceModel> places, PlaceModel place) =>
+      Get.toNamed(AppRoute.tripDetail,
+          arguments: {"places": places, "place": place});
 
   void _getTrips() async {
     change(trip.value, status: RxStatus.loading());
@@ -56,7 +51,4 @@ class HomeViewModel extends GetxController with StateMixin<TripModel> {
 
   void _clearUidSharedPrefValue() =>
       GetStorageHelper.removeGetStorageKey(GetStorageHelper.uid);
-
-  void _getSharedPrefValue() async =>
-      _uid = await GetStorageHelper.readGetStorageValue(GetStorageHelper.uid);
 }

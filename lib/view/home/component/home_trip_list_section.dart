@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:triffy/common/const/dimen_const.dart';
+import 'package:triffy/model/network/place_model.dart';
 import 'package:triffy/view_model/home_view_model.dart';
-import 'package:triffy/model/network/place_hotel_model.dart';
 import 'package:triffy/common/widget/custom_progress_bar.dart';
 import 'package:triffy/view/home/component/home_trip_card.dart';
 
 class HomeTripListSection extends GetWidget<HomeViewModel> {
-  final bool isPlace;
+  final String type;
 
   const HomeTripListSection({
     Key? key,
-    required this.isPlace,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -27,26 +27,21 @@ class HomeTripListSection extends GetWidget<HomeViewModel> {
         (state) => ListView.builder(
           scrollDirection: Axis.horizontal,
           primary: false,
-          itemCount: isPlace
-              ? controller.trip.value.places.length
-              : controller.trip.value.hotels.length,
+          itemCount: controller.trip.value.places.length,
           itemBuilder: (BuildContext context, int index) {
-            PlaceHotelModel placeHotel = isPlace
-                ? controller.trip.value.places[index]
-                : controller.trip.value.hotels[index];
-            return Padding(
-              padding: const EdgeInsets.only(
-                left: paddingLarge,
-              ),
-              child: HomeTripCard(
-                homeViewModel: controller,
-                isPlace: isPlace,
-                placeHotels: isPlace
-                    ? controller.trip.value.places
-                    : controller.trip.value.hotels,
-                placeHotel: placeHotel,
-              ),
-            );
+            PlaceModel place = controller.trip.value.places[index];
+            return type == place.type
+                ? Padding(
+                    padding: const EdgeInsets.only(
+                      left: paddingLarge,
+                    ),
+                    child: HomeTripCard(
+                      homeViewModel: controller,
+                      places: controller.trip.value.places,
+                      place: place,
+                    ),
+                  )
+                : Container();
           },
         ),
         onLoading: const CustomProgressBar(),

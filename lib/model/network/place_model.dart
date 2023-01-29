@@ -1,5 +1,5 @@
-class PlaceHotelModel {
-  const PlaceHotelModel({
+class PlaceModel {
+  const PlaceModel({
     this.id = 0,
     this.imageUrl = const [],
     this.name = "",
@@ -21,8 +21,7 @@ class PlaceHotelModel {
   final bool isBooked;
   final String type;
 
-  factory PlaceHotelModel.fromJson(Map<String, dynamic> json) =>
-      PlaceHotelModel(
+  factory PlaceModel.fromJson(Map<String, dynamic> json) => PlaceModel(
         id: json["id"],
         imageUrl: List<String>.from(json["image_url"].map((x) => x)),
         name: json["name"],

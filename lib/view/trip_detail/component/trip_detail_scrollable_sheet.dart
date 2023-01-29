@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:triffy/common/const/color_const.dart';
-import 'package:triffy/model/network/place_hotel_model.dart';
+import 'package:triffy/model/network/place_model.dart';
 import 'package:triffy/view/trip_detail/component/'
     'trip_detail_description_section.dart';
 
 class TripDetailScrollableSheet extends StatelessWidget {
-  final PlaceHotelModel placeHotel;
+  final PlaceModel place;
 
   const TripDetailScrollableSheet({
     Key? key,
-    required this.placeHotel,
+    required this.place,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class TripDetailScrollableSheet extends StatelessWidget {
           child: Stack(
             children: [
               TripDetailDescriptionSection(
-                placeHotel: placeHotel,
+                place: place,
                 padding: padding,
               ),
               Align(

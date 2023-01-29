@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:triffy/common/const/color_const.dart';
-import 'package:triffy/model/network/place_hotel_model.dart';
+import 'package:triffy/model/network/place_model.dart';
 
 class TripDetailDescriptionSection extends StatefulWidget {
   final double padding;
-  final PlaceHotelModel placeHotel;
+  final PlaceModel place;
 
   const TripDetailDescriptionSection({
     Key? key,
     required this.padding,
-    required this.placeHotel,
+    required this.place,
   }) : super(key: key);
 
   @override
@@ -52,7 +52,7 @@ class _TripDetailDescriptionSectionState
               right: widget.padding,
             ),
             child: Text(
-              widget.placeHotel.name,
+              widget.place.name,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.bold,
                     color: colorWhite,
@@ -70,7 +70,7 @@ class _TripDetailDescriptionSectionState
               right: widget.padding,
             ),
             child: Text(
-              widget.placeHotel.country,
+              widget.place.country,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: colorAsh,
                   ),
@@ -93,7 +93,7 @@ class _TripDetailDescriptionSectionState
                   color: colorWhite,
                 ),
                 Text(
-                  widget.placeHotel.time,
+                  widget.place.time,
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: colorAsh,
@@ -112,7 +112,7 @@ class _TripDetailDescriptionSectionState
               horizontal: widget.padding,
             ),
             child: Text(
-              widget.placeHotel.description,
+              widget.place.description,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: colorAsh,
                   ),

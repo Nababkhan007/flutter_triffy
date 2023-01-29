@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:triffy/common/const/color_const.dart';
 import 'package:triffy/common/const/dimen_const.dart';
 import 'package:triffy/view_model/home_view_model.dart';
-import 'package:triffy/model/network/place_hotel_model.dart';
+import 'package:triffy/model/network/place_model.dart';
 
 class BookedTripCard extends StatelessWidget {
   final HomeViewModel homeViewModel;
-  final bool isPlace;
-  final List<PlaceHotelModel> placeHotels;
-  final PlaceHotelModel placeHotel;
+  final List<PlaceModel> places;
+  final PlaceModel place;
 
   const BookedTripCard({
     Key? key,
     required this.homeViewModel,
-    required this.isPlace,
-    required this.placeHotels,
-    required this.placeHotel,
+    required this.places,
+    required this.place,
   }) : super(key: key);
 
   @override
@@ -26,8 +24,7 @@ class BookedTripCard extends StatelessWidget {
         bottom: paddingLarge,
       ),
       child: InkWell(
-        onTap: () =>
-            homeViewModel.goToTripDetailView(isPlace, placeHotels, placeHotel),
+        onTap: () => homeViewModel.goToTripDetailView(places, place),
         child: Wrap(
           children: [
             Card(
@@ -48,7 +45,7 @@ class BookedTripCard extends StatelessWidget {
                         ),
                       ),
                       child: Image.network(
-                        placeHotel.imageUrl[0],
+                        place.imageUrl[0],
                         height: double.infinity,
                         width: size.width * 0.3,
                         fit: BoxFit.cover,
@@ -67,7 +64,7 @@ class BookedTripCard extends StatelessWidget {
                             ),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              placeHotel.name,
+                              place.name,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
@@ -88,7 +85,7 @@ class BookedTripCard extends StatelessWidget {
                             ),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              placeHotel.country,
+                              place.country,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -114,7 +111,7 @@ class BookedTripCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                placeHotel.time,
+                                place.time,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -136,7 +133,7 @@ class BookedTripCard extends StatelessWidget {
                             ),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              placeHotel.price,
+                              place.price,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!

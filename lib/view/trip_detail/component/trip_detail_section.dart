@@ -31,10 +31,10 @@ class TripDetailSection extends GetWidget<TripDetailViewModel> {
               height: size.height * .6,
               child: PageView.builder(
                 controller: controller.pageController,
-                itemCount: controller.placeHotel.imageUrl.length,
+                itemCount: controller.place.imageUrl.length,
                 itemBuilder: (context, index) {
                   return Image.network(
-                    controller.placeHotel.imageUrl[index],
+                    controller.place.imageUrl[index],
                     fit: BoxFit.cover,
                   );
                 },
@@ -42,16 +42,16 @@ class TripDetailSection extends GetWidget<TripDetailViewModel> {
             ),
             CustomSliderIndicator(
               padding: padding,
-              indicatorLength: controller.placeHotel.imageUrl.length,
+              indicatorLength: controller.place.imageUrl.length,
               activeIndex: controller.activeIndex.value,
             ),
             TripDetailAppBar(
               size: size,
               padding: padding,
-              price: controller.placeHotel.price,
+              price: controller.place.price,
             ),
             TripDetailScrollableSheet(
-              placeHotel: controller.placeHotel,
+              place: controller.place,
             ),
           ],
         ),
@@ -63,8 +63,8 @@ class TripDetailSection extends GetWidget<TripDetailViewModel> {
           ),
           child: CustomButton(
             onPressed: () =>
-                controller.updateTripDetails(!controller.placeHotel.isBooked),
-            text: !controller.placeHotel.isBooked ? "Book Now" : "Cancel",
+                controller.updateTripDetails(!controller.place.isBooked),
+            text: !controller.place.isBooked ? "Book Now" : "Cancel",
           ),
         ),
       ),

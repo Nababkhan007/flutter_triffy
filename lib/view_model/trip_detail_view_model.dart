@@ -5,13 +5,12 @@ import 'package:triffy/common/const/util_const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:triffy/common/const/color_const.dart';
 import 'package:triffy/view_model/home_view_model.dart';
-import 'package:triffy/model/network/place_hotel_model.dart';
+import 'package:triffy/model/network/place_model.dart';
 
 class TripDetailViewModel extends GetxController {
   RxInt activeIndex = 0.obs;
-  bool isPlace = false;
-  List<PlaceHotelModel> placeHotels = [];
-  PlaceHotelModel placeHotel = const PlaceHotelModel();
+  List<PlaceModel> places = [];
+  PlaceModel place = const PlaceModel();
   PageController pageController = PageController();
 
   @override
@@ -22,31 +21,27 @@ class TripDetailViewModel extends GetxController {
   }
 
   void updateTripDetails(bool isBooked) async {
-    String updateItem = "";
-    List<Map<String, dynamic>> placeHotelList = [];
+    List<Map<String, dynamic>> placeList = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     DocumentReference docRef =
         db.collection("trip").doc("xRfm2EyGIt1shdLUuRFW");
 
-    for (PlaceHotelModel placeHotelData in placeHotels) {
-      placeHotelList.add(PlaceHotelModel(
-        id: placeHotelData.id,
-        imageUrl: placeHotelData.imageUrl,
-        name: placeHotelData.name,
-        country: placeHotelData.country,
-        time: placeHotelData.time,
-        price: placeHotelData.price,
-        description: placeHotelData.description,
-        isBooked: placeHotelData.id == placeHotel.id
-            ? isBooked
-            : placeHotelData.isBooked,
+    for (PlaceModel placeData in places) {
+      placeList.add(PlaceModel(
+        id: placeData.id,
+        imageUrl: placeData.imageUrl,
+        name: placeData.name,
+        country: placeData.country,
+        time: placeData.time,
+        price: placeData.price,
+        description: placeData.description,
+        isBooked: placeData.id == place.id ? isBooked : placeData.isBooked,
+        type: placeData.type,
       ).toJson());
     }
 
-    isPlace ? updateItem = "place" : updateItem = "hotel";
-
     docRef.update({
-      updateItem: placeHotelList,
+      "place": placeList,
     }).then(
       (value) {
         showSnackBar(
@@ -73,9 +68,8 @@ class TripDetailViewModel extends GetxController {
 
   void _getArguments() {
     if (Get.arguments != null) {
-      isPlace = Get.arguments["isPlace"] ?? false;
-      placeHotels = Get.arguments["placeHotels"] ?? [];
-      placeHotel = Get.arguments["placeHotel"] ?? const PlaceHotelModel();
+      places = Get.arguments["places"] ?? [];
+      place = Get.arguments["place"] ?? const PlaceModel();
     }
   }
 }

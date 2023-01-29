@@ -74,7 +74,7 @@ class HomeSection extends GetWidget<HomeViewModel> {
             ],
           ),
           const HomeTripListSection(
-            isPlace: true,
+            type: "place",
           ),
           Row(
             children: [
@@ -106,7 +106,7 @@ class HomeSection extends GetWidget<HomeViewModel> {
             ],
           ),
           const HomeTripListSection(
-            isPlace: false,
+            type: "hotel",
           ),
         ],
       ),
