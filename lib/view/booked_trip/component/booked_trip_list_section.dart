@@ -25,16 +25,18 @@ class BookedTripListSection extends GetWidget<HomeViewModel> {
           itemCount: controller.trip.value.places.length,
           itemBuilder: (BuildContext context, int index) {
             PlaceModel place = controller.trip.value.places[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: paddingMedium,
-              ),
-              child: BookedTripCard(
-                homeViewModel: controller,
-                places: controller.trip.value.places,
-                place: place,
-              ),
-            );
+            return place.isBooked
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: paddingMedium,
+                    ),
+                    child: BookedTripCard(
+                      homeViewModel: controller,
+                      places: controller.trip.value.places,
+                      place: place,
+                    ),
+                  )
+                : Container();
           },
         ),
         onLoading: const CustomProgressBar(),
