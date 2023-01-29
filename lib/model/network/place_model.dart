@@ -8,6 +8,7 @@ class PlaceHotelModel {
     this.price = "",
     this.description = "",
     this.isBooked = false,
+    this.type = "",
   });
 
   final int id;
@@ -18,6 +19,7 @@ class PlaceHotelModel {
   final String price;
   final String description;
   final bool isBooked;
+  final String type;
 
   factory PlaceHotelModel.fromJson(Map<String, dynamic> json) =>
       PlaceHotelModel(
@@ -29,6 +31,7 @@ class PlaceHotelModel {
         price: json["price"],
         description: json["description"],
         isBooked: json["is_booked"],
+        type: json["type"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -40,5 +43,6 @@ class PlaceHotelModel {
         "price": price,
         "description": description,
         "is_booked": isBooked,
+        "type": type,
       };
 }
