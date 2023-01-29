@@ -6,11 +6,15 @@ import 'package:triffy/model/network/place_hotel_model.dart';
 
 class BookedTripCard extends StatelessWidget {
   final HomeViewModel homeViewModel;
+  final bool isPlace;
+  final List<PlaceHotelModel> placeHotels;
   final PlaceHotelModel placeHotel;
 
   const BookedTripCard({
     Key? key,
     required this.homeViewModel,
+    required this.isPlace,
+    required this.placeHotels,
     required this.placeHotel,
   }) : super(key: key);
 
@@ -22,7 +26,8 @@ class BookedTripCard extends StatelessWidget {
         right: paddingLarge,
       ),
       child: InkWell(
-        onTap: () => homeViewModel.goToTripDetailView(placeHotel),
+        onTap: () =>
+            homeViewModel.goToTripDetailView(isPlace, placeHotels, placeHotel),
         child: Card(
           elevation: 2.0,
           child: SizedBox(

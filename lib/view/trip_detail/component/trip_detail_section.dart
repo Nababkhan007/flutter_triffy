@@ -62,8 +62,9 @@ class TripDetailSection extends GetWidget<TripDetailViewModel> {
             bottom: 24.0 * 2,
           ),
           child: CustomButton(
-            onPressed: () {},
-            text: "Book Now",
+            onPressed: () =>
+                controller.updateTripDetails(!controller.placeHotel.isBooked),
+            text: !controller.placeHotel.isBooked ? "Book Now" : "Cancel",
           ),
         ),
       ),

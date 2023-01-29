@@ -27,7 +27,9 @@ class BookedTripListSection extends GetWidget<HomeViewModel> {
         (state) => ListView.builder(
           scrollDirection: Axis.horizontal,
           primary: false,
-          itemCount: controller.trip.value.places.length,
+          itemCount: isPlace
+              ? controller.trip.value.places.length
+              : controller.trip.value.hotels.length,
           itemBuilder: (BuildContext context, int index) {
             PlaceHotelModel placeHotel = isPlace
                 ? controller.trip.value.places[index]
@@ -38,6 +40,10 @@ class BookedTripListSection extends GetWidget<HomeViewModel> {
               ),
               child: BookedTripCard(
                 homeViewModel: controller,
+                isPlace: isPlace,
+                placeHotels: isPlace
+                    ? controller.trip.value.places
+                    : controller.trip.value.hotels,
                 placeHotel: placeHotel,
               ),
             );

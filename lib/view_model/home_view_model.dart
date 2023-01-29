@@ -22,8 +22,13 @@ class HomeViewModel extends GetxController with StateMixin<TripModel> {
 
   Future<dynamic>? goToBookedTripView() => Get.toNamed(AppRoute.bookedTrip);
 
-  Future<dynamic>? goToTripDetailView(PlaceHotelModel placeHotel) =>
-      Get.toNamed(AppRoute.tripDetail, arguments: {"placeHotel": placeHotel});
+  Future<dynamic>? goToTripDetailView(bool isPlace,
+          List<PlaceHotelModel> placeHotels, PlaceHotelModel placeHotel) =>
+      Get.toNamed(AppRoute.tripDetail, arguments: {
+        "isPlace": isPlace,
+        "placeHotels": placeHotels,
+        "placeHotel": placeHotel,
+      });
 
   void _getTrips() async {
     change(trip.value, status: RxStatus.loading());
@@ -42,7 +47,7 @@ class HomeViewModel extends GetxController with StateMixin<TripModel> {
     showSnackBar(
       "Success",
       "Logout successful",
-      leftBarIndicatorColor: colorWarning,
+      leftBarIndicatorColor: colorSuccess,
     );
     _goToLoginView();
   }
