@@ -31,18 +31,16 @@ class HomeTripListSection extends GetWidget<HomeViewModel> {
           itemBuilder: (BuildContext context, int index) {
             PlaceModel place = controller.trip.value.places[index];
             return type == place.type
-                ? !place.isBooked
-                    ? Padding(
-                        padding: const EdgeInsets.only(
-                          left: paddingLarge,
-                        ),
-                        child: HomeTripCard(
-                          homeViewModel: controller,
-                          places: controller.trip.value.places,
-                          place: place,
-                        ),
-                      )
-                    : Container()
+                ? Padding(
+                    padding: const EdgeInsets.only(
+                      left: paddingLarge,
+                    ),
+                    child: HomeTripCard(
+                      homeViewModel: controller,
+                      places: controller.trip.value.places,
+                      place: place,
+                    ),
+                  )
                 : Container();
           },
         ),
