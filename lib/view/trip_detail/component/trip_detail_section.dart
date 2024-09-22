@@ -6,11 +6,10 @@ import 'package:triffy/common/widget/custom_button.dart';
 import 'package:triffy/view_model/trip_detail_view_model.dart';
 import 'package:triffy/common/widget/custom_slider_indicator.dart';
 import 'package:triffy/view/trip_detail/component/trip_detail_app_bar.dart';
-import 'package:triffy/view/trip_detail/component/'
-    'trip_detail_scrollable_sheet.dart';
+import 'package:triffy/view/trip_detail/component/trip_detail_scrollable_sheet.dart';
 
 class TripDetailSection extends GetWidget<TripDetailViewModel> {
-  const TripDetailSection({Key? key}) : super(key: key);
+  const TripDetailSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +62,7 @@ class TripDetailSection extends GetWidget<TripDetailViewModel> {
           ),
           child: CustomButton(
             onPressed: () =>
-                controller.updateTripDetails(!controller.place.isBooked),
+                controller.updateTripDetails(!controller.place.isBooked, !controller.place.isFavorite, booked: true, favorite: false),
             text: !controller.place.isBooked ? "Book Now" : "Cancel",
           ),
         ),

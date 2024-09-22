@@ -8,6 +8,7 @@ class PlaceModel {
     this.price = "",
     this.description = "",
     this.isBooked = false,
+    this.isFavorite = false,
     this.type = "",
   });
 
@@ -19,6 +20,7 @@ class PlaceModel {
   final String price;
   final String description;
   final bool isBooked;
+  final bool isFavorite;
   final String type;
 
   factory PlaceModel.fromJson(Map<String, dynamic> json) => PlaceModel(
@@ -30,6 +32,7 @@ class PlaceModel {
         price: json["price"],
         description: json["description"],
         isBooked: json["is_booked"],
+        isFavorite: json["is_favorite"],
         type: json["type"],
       );
 
@@ -42,6 +45,7 @@ class PlaceModel {
         "price": price,
         "description": description,
         "is_booked": isBooked,
+        "is_favorite": isFavorite,
         "type": type,
       };
 }
